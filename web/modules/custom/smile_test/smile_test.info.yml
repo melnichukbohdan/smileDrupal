@@ -1,0 +1,6 @@
+name: Smile Test
+description: Creates a page showing "It is my first route ever".
+package: Custom
+
+type: module
+core_version_requirement: ^9

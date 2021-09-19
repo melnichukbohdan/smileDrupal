@@ -1,0 +1,15 @@
+smile_test.content:
+  path: '/smile_test'
+  defaults:
+    _controller: '\Drupal\smile_test\Controller\SmileTestController::content'
+    _title: 'It is my first route ever'
+  requirements:
+    _permission: 'access content'
+
+smile_test.node:
+  path: '/smile_test/node-render/{nid}'
+  defaults:
+    _controller: '\Drupal\smile_test\Controller\NodeController::node_render'
+  requirements:
+    _custom_access: '\Drupal\smile_test\Controller\NodeController::access'
+    nid: \d+

@@ -1,0 +1,7 @@
+smile_test.content:
+  title: smile-test
+  route_name: smile_test.content
+  weight: -2
+  options:
+    attributes:
+      target: _blank

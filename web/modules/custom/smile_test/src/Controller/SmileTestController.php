@@ -11,8 +11,7 @@ use Drupal\node\Entity\EntityTypeManagerInterface;
  *
  * @package Drupal\SmileTest\Controller
  */
-class SmileTestController extends ControllerBase
-{
+class SmileTestController extends ControllerBase {
 
   /**
    * Display the markup.
@@ -20,7 +19,8 @@ class SmileTestController extends ControllerBase
    * @return array
    *   Returns a render-able array for a text page.
    */
-  public function content()
+
+   public function content()
   {
     $build = [
       '#markup' => $this->t('It is my first route ever'),
@@ -28,3 +28,4 @@ class SmileTestController extends ControllerBase
     return $build;
   }
 }
+

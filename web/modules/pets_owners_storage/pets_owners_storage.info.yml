@@ -1,0 +1,6 @@
+name: Pets Owners Storage
+description: Creates a module for processing and storing data from the form "Pets owners"
+package: Custom
+
+type: module
+core_version_requirement: ^9

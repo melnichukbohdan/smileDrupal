@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+
+function pets_owners_storage_schema() {
+  $schema['pets_owners_storage'] = [
+    'description' => 'Stores module data as key/value pairs pets owners.',
+    'fields' => [
+      'uid' => [
+        'description' => 'Primary KEY: Unique person ID',
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'description' => 'Name of the person',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ],
+      'gender' => [
+        'description' => 'gender of the person',
+        'type' => 'varchar',
+        'length' => 10,
+      ],
+      'prefix' => [
+        'description' => 'prefix of the person',
+        'type' => 'varchar',
+        'length' => 4,
+      ],
+      'age' => [
+        'description' => 'age of the person',
+        'type' => 'int',
+        'length' => 4,
+      ],
+      'father' => [
+        'description' => 'father of the person',
+        'type' => 'varchar',
+        'length' => 100,
+      ],
+      'mother' => [
+        'description' => 'mother of the person',
+        'type' => 'varchar',
+        'length' => 100,
+      ],
+      'pets_name' => [
+        'description' => 'pets name of the person',
+        'type' => 'varchar',
+        'length' => 100,
+      ],
+      'email' => [
+        'description' => 'pets name of the person',
+        'type' => 'varchar',
+        'length' => 150,
+      ],
+
+    ],
+    'primary key' => [
+      'uid',
+    ],
+  ];
+  return $schema;
+}

@@ -1,0 +1,15 @@
+pets_owners_storage.form:
+  title: pets owners storage
+  route_name: pets_owners_storage.form
+  weight: -3
+  options:
+    attributes:
+      target: _blank
+
+pets_owners_storage.content:
+  title: pets owners list
+  route_name: pets_owners_storage.content
+  weight: -2
+  options:
+    attributes:
+      target: _blank

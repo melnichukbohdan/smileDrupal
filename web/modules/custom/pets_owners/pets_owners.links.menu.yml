@@ -1,0 +1,7 @@
+pets_owners.form:
+  title: pets owners
+  route_name: pets_owners.form
+  weight: -3
+  options:
+    attributes:
+      target: _blank

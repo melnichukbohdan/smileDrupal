@@ -6,6 +6,7 @@ smile_test.content:
   requirements:
     _permission: 'access content'
 
+  # routing for admin
 smile_test.node:
   path: '/smile_test/node-render/{nid}'
   defaults:

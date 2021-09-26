@@ -8,7 +8,7 @@ function pets_owners_storage_schema() {
   $schema['pets_owners_storage'] = [
     'description' => 'Stores module data as key/value pairs pets owners.',
     'fields' => [
-      'uid' => [
+      'poid' => [
         'description' => 'Primary KEY: Unique person ID',
         'type' => 'serial',
         'not null' => TRUE,
@@ -57,7 +57,7 @@ function pets_owners_storage_schema() {
 
     ],
     'primary key' => [
-      'uid',
+      'poid',
     ],
   ];
   return $schema;

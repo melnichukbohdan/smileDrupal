@@ -47,7 +47,7 @@ class PetsOwnerStorageController extends ControllerBase {
     $entries = Database::getConnection()
       ->select('pets_owners_storage', 'p')
       ->fields('p', [
-        'uid',
+        'poid',
         'prefix',
         'name',
         'gender',
@@ -61,9 +61,9 @@ class PetsOwnerStorageController extends ControllerBase {
     $i = 0;
     foreach ($entries as $entry) {
       $rows[] = array_map('Drupal\Component\Utility\Html::escape', (array) $entry);
-      $delete = Url::fromUserInput('/pets_owners_delete/' . $rows[$i]['uid']);
+      $delete = Url::fromUserInput('/pets_owners_delete/' . $rows[$i]['poid']);
       $rows[$i]['delete'] = Link::fromTextAndUrl('Delete', $delete);
-      $edit = Url::fromUserInput('/pets_owners_form/' . $rows[$i]['uid']);
+      $edit = Url::fromUserInput('/pets_owners_form/' . $rows[$i]['poid']);
       $rows[$i]['edit'] = Link::fromTextAndUrl('Edit', $edit);
       $i++;
     }
@@ -78,16 +78,16 @@ class PetsOwnerStorageController extends ControllerBase {
   }
 
   /**
-   * @param null $uid
+   * @param null $poid
    *
    * @return \Symfony\Component\HttpFoundation\RedirectResponse
    */
-  public function delete($uid = NULL) {
+  public function delete($poid = NULL) {
     $query = \Drupal::database();
     $query->delete('pets_owners_storage')
-      ->condition('uid', $uid)
+      ->condition('poid', $poid)
       ->execute();
-    $text = 'Record uid => ' . $uid . ' was removed from database.';
+    $text = 'Record poid => ' . $poid . ' was removed from database.';
     \Drupal::messenger()->addMessage($text);
     // Redirect to a page that show all the records.
     return $this->redirect('pets_owners_storage.content');

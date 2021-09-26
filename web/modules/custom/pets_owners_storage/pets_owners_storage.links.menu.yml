@@ -8,8 +8,10 @@ pets_owners_storage.form:
 
 pets_owners_storage.content:
   title: pets owners list
+  menu_name: main
   route_name: pets_owners_storage.content
-  weight: -2
+  weight: 2
   options:
     attributes:
-      target: _blank
+      target: _self
+

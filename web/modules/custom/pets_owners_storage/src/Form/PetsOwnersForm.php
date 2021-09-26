@@ -24,13 +24,13 @@ class PetsOwnersForm extends FormBase {
   /*
    * this method build form and added parameter's for input
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $uid = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, $poid = NULL) {
 
     // Get values from DB.
     $values = Database::getConnection()
       ->select('pets_owners_storage', 'p')
       ->fields('p', [
-        'uid',
+        'poid',
         'prefix',
         'name',
         'gender',
@@ -39,7 +39,7 @@ class PetsOwnersForm extends FormBase {
         'mother',
         'pets_name',
         'email',
-      ])->condition('uid', $uid)
+      ])->condition('poid', $poid)
       ->execute()->fetchAssoc();
 
 
@@ -139,8 +139,8 @@ class PetsOwnersForm extends FormBase {
         '#value' => $this->t('Change'),
         '#submit' => ['::change'],
       ];
-      // Pass value $uid to submit form.
-      $form_state->set('uid', $uid);
+      // Pass value $poid to submit form.
+      $form_state->set('poid', $poid);
       return $form;
     }
     return $form;
@@ -191,12 +191,12 @@ class PetsOwnersForm extends FormBase {
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    */
   public function delete(array &$form, FormStateInterface $form_state) {
-    $uid = $form_state->get('uid');
+    $poid = $form_state->get('poid');
     $query = \Drupal::database();
     $query->delete('pets_owners_storage')
-      ->condition('uid', $uid)
+      ->condition('poid', $poid)
       ->execute();
-    $text = 'Record uid => ' . $uid . ' was removed from database.';
+    $text = 'Record poid => ' . $poid . ' was removed from database.';
     \Drupal::messenger()->addMessage($text);
     $form_state->setRedirect('pets_owners_storage.content');
   }
@@ -205,7 +205,7 @@ class PetsOwnersForm extends FormBase {
    * Change value of the form.
    */
   public function change(array &$form, FormStateInterface $form_state) {
-    $uid = $form_state->get('uid');
+    $poid = $form_state->get('poid');
     $query = \Drupal::database();
     $query->update('pets_owners_storage')
       ->fields([
@@ -218,7 +218,7 @@ class PetsOwnersForm extends FormBase {
         'pets_name' => $form_state->getValue('pets_name'),
         'email' => $form_state->getValue('email'),
       ])
-      ->condition('uid', $uid)
+      ->condition('poid', $poid)
       ->execute();
     $text = $this->t('The value changed');
     \Drupal::messenger()->addMessage($text);

@@ -15,20 +15,20 @@ pets_owners_storage.content:
     _permission: 'access content'
 
 pets_owners_storage.delete:
-  path: '/pets_owners_delete/{uid}'
+  path: '/pets_owners_delete/{poid}'
   defaults:
     _controller: '\Drupal\pets_owners_storage\Controller\PetsOwnerStorageController::delete'
     _title: 'Pets owners delete'
   requirements:
     _permission: 'access content'
-    uid: \d+
+    poid: \d+
 
 pets_owners_storage.edit:
-  path: '/pets_owners_form/{uid}'
+  path: '/pets_owners_form/{poid}'
   defaults:
     _form: '\Drupal\pets_owners_storage\Form\PetsOwnersForm'
     _title: 'Pets owners edit'
   requirements:
     _permission: 'access content'
-    uid: \d+
+    poid: \d+
 

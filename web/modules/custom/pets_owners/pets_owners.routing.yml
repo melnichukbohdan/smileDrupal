@@ -1,5 +1,5 @@
 pets_owners.form:
-  path: '/pets_owners_form'
+  path: '/pets_owners_form1'
   defaults:
     _title: 'Pets owners form'
     _form: '\Drupal\pets_owners\Form\FormPetsOwners'

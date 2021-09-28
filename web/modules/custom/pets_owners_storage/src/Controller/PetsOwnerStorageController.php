@@ -2,6 +2,7 @@
 
 namespace Drupal\pets_owners_storage\Controller;
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Database\Database;
@@ -59,14 +60,29 @@ class PetsOwnerStorageController extends ControllerBase {
       ])->execute();
     $rows = [];
     $i = 0;
-    foreach ($entries as $entry) {
-      $rows[] = array_map('Drupal\Component\Utility\Html::escape', (array) $entry);
-      $delete = Url::fromUserInput('/pets_owners_delete/' . $rows[$i]['poid']);
-      $rows[$i]['delete'] = Link::fromTextAndUrl('Delete', $delete);
-      $edit = Url::fromUserInput('/pets_owners_form/' . $rows[$i]['poid']);
-      $rows[$i]['edit'] = Link::fromTextAndUrl('Edit', $edit);
-      $i++;
-    }
+
+
+
+  foreach ($entries as $entry) {
+    $rows[] = array_map('Drupal\Component\Utility\Html::escape', (array) $entry);
+    //link delete user
+    $link_delete = Url::fromRoute('pets_owners_storage.delete',['poid'=>$rows[$i]['poid']]);
+    $link_delete->setOptions([
+      'attributes' => [
+        'class' => ['use-ajax', 'button', 'button--small'],
+        'data-dialog-type' => 'modal',
+        'data-dialog-options' => Json::encode(['width' => 400]),
+      ],
+    ]);
+    $ajax_button = ['#type' => 'markup',
+      '#markup' => Link::fromTextAndUrl(t('Delete'), $link_delete)->toString(),
+      '#attached' => ['library' => ['core/drupal.dialog.ajax']]];
+    $rows[$i]['delete']=\Drupal::service('renderer')->render($ajax_button);
+    //link update user data
+    $edit = Url::fromUserInput('/pets_owners_form/' . $rows[$i]['poid']);
+    $rows[$i]['edit'] = Link::fromTextAndUrl('Edit', $edit);
+    $i++;
+  }
 
     $content['table'] = [
       '#type' => 'table',
@@ -76,22 +92,5 @@ class PetsOwnerStorageController extends ControllerBase {
     ];
     return $content;
   }
-
-  /**
-   * @param null $poid
-   *
-   * @return \Symfony\Component\HttpFoundation\RedirectResponse
-   */
-  public function delete($poid = NULL) {
-    $query = \Drupal::database();
-    $query->delete('pets_owners_storage')
-      ->condition('poid', $poid)
-      ->execute();
-    $text = 'Record poid => ' . $poid . ' was removed from database.';
-    \Drupal::messenger()->addMessage($text);
-    // Redirect to a page that show all the records.
-    return $this->redirect('pets_owners_storage.content');
-  }
-
 }
 

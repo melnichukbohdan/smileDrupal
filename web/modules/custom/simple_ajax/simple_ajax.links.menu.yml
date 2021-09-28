@@ -1,0 +1,8 @@
+simple_ajax.form:
+  title: simple ajax
+  menu_name: main
+  route_name: simple_ajax.form
+  weight: 3
+  options:
+    attributes:
+      target: _self

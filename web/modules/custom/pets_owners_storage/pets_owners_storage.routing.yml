@@ -15,9 +15,9 @@ pets_owners_storage.content:
     _permission: 'access content'
 
 pets_owners_storage.delete:
-  path: '/pets_owners_delete/{poid}'
+  path: '/pets_owners_delete/{poid}/delete'
   defaults:
-    _controller: '\Drupal\pets_owners_storage\Controller\PetsOwnerStorageController::delete'
+    _form: '\Drupal\pets_owners_storage\Form\ConfirmDeleteForm'
     _title: 'Pets owners delete'
   requirements:
     _permission: 'access content'
@@ -31,4 +31,3 @@ pets_owners_storage.edit:
   requirements:
     _permission: 'access content'
     poid: \d+
-

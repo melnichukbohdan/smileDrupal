@@ -1,0 +1,6 @@
+name: Simple Ajax
+description: Creates a module for page Ajax form
+package: Custom
+
+type: module
+core_version_requirement: ^9

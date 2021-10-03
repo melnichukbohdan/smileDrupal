@@ -78,12 +78,12 @@ use Drupal\Core\Database\Query\SelectInterface;
  *
  * Note that if your query has a string condition, like:
  * @code
- * WHERE e.my_field = 'foo'
+ * WHERE e.video_field = 'foo'
  * @endcode
  * when you convert it to placeholders, omit the quotes:
  * @code
- * WHERE e.my_field = :my_field
- * ... array(':my_field' => 'foo') ...
+ * WHERE e.video_field = :video_field
+ * ... array(':video_field' => 'foo') ...
  * @endcode
  *
  * @section sec_dynamic Dynamic SELECT queries

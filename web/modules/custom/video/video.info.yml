@@ -1,0 +1,8 @@
+name: VideoField
+description: Defines a video field type.
+type: module
+package: Field types
+core_version_requirement: ^9
+
+dependencies:
+  - field
